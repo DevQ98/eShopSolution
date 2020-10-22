@@ -2,6 +2,7 @@
 using eShopSolution.Application.System.Users;
 using eShopSolution.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShopSolution.BackendApi.Controllers
@@ -31,7 +32,7 @@ namespace eShopSolution.BackendApi.Controllers
             }
             return Ok(resultToken);
         }
-        [HttpPost("register")]
+        [HttpPost]
         [AllowAnonymous] // chua login van goi dc
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
@@ -44,7 +45,15 @@ namespace eShopSolution.BackendApi.Controllers
             {
                 return BadRequest("Register is unsuccessful");
             }
+
             return Ok();
+        }
+        //http://localhost/api/users/paging?pageIndex=1&pageSize=10&KeyWork=1
+        [HttpGet("Paging")]
+        public async Task<IActionResult> GetAllPaging( [FromQuery] GetUserPagingRequest request)
+        {
+            var products = await _userService.GetUsersPaging( request);
+            return Ok(products);
         }
     }
 }
