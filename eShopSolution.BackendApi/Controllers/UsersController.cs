@@ -18,7 +18,7 @@ namespace eShopSolution.BackendApi.Controllers
         }
         [HttpPost("authenticate")]
         [AllowAnonymous] // chua login van goi dc
-        public  async Task<IActionResult> Authenticate([FromForm] LoginRequest request)
+        public  async Task<IActionResult> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -29,11 +29,11 @@ namespace eShopSolution.BackendApi.Controllers
             {
                 return BadRequest("UserName or PassWord is incorrect");
             }
-            return Ok( new { token = resultToken});
+            return Ok(resultToken);
         }
         [HttpPost("register")]
         [AllowAnonymous] // chua login van goi dc
-        public async Task<IActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
             {
