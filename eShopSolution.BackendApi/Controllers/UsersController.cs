@@ -38,16 +38,14 @@ namespace eShopSolution.BackendApi.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+
             var result = await _userService.Register(request);
             if (!result.IsSuccessed)
             {
                 return BadRequest(result);
             }
-
-            return Ok();
+            return Ok(result);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UserUpdateRequest request)

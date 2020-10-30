@@ -11,6 +11,7 @@ namespace eShopSolution.ViewModels.Common
             IsSuccessed = true;
             ResultObj = resultObj;
         }
+
         public ApiSuccessResult()
         {
             IsSuccessed = true;
