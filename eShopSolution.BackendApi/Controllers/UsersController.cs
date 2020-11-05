@@ -34,7 +34,7 @@ namespace eShopSolution.BackendApi.Controllers
             return Ok(resultToken);
         }
         [HttpPost]
-        [AllowAnonymous] // chua login van goi dc
+        [AllowAnonymous] 
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
